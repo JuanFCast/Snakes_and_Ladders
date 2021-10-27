@@ -6,24 +6,38 @@ public class Node {
 	private int col;
 	
 	private int numbNode;
-	private char player;
 	
 	private Node next;
 	private Node prev;
 	private Node up;
 	private Node down;
 	
-	public Node(int r, int c, int n) 
+	public Node(int r, int c) 
 	{
 		row = r;
 		col = c;
-		numbNode = n;
 	}
 	
-
-	//Methods
-	
 	//Getters and Setters
+	
+	public int getNumbNode() {
+		return numbNode;
+	}
+	
+	public void setNumbNode(int numbNode) {
+		this.numbNode = numbNode;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+
+	//of Nodes
 	public Node getNext() {
 		return next;
 	}
@@ -55,9 +69,8 @@ public class Node {
 	public void setDown(Node down) {
 		this.down = down;
 	}
-
-	public int getNumbNode() {
-		return numbNode;
+	
+	public String toString() {
+		return "[" + row + ", " + col + "]";
 	}
-
 }
