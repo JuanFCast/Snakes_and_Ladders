@@ -6,7 +6,9 @@ public class Node {
 	private int col;
 	
 	private int numbNode;
+	private Player players;
 	
+	//Nodes around
 	private Node next;
 	private Node prev;
 	private Node up;
@@ -19,7 +21,6 @@ public class Node {
 	}
 	
 	//Getters and Setters
-	
 	public int getNumbNode() {
 		return numbNode;
 	}

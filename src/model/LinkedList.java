@@ -15,12 +15,13 @@ public class LinkedList {
 		numRow = r;
 		numCol = c;
 		createRows(0, 0, first);
-		System.out.println("Este esta arriba del first despues de hacer todo: " + first.getUp().toString());
+		System.out.println("Este esta arriba del first despues de hacer todo: " + first.getUp().getUp().toString());
 	}
 	
 	public void createRows(int i, int j, Node firstOfRow) {
 		System.out.println("Se crea la fila " + i);
 		System.out.println("Se crea la columna " + j);
+		System.out.println("Este es el first que recibo de parametro: " + firstOfRow.toString());
 		createCol(i, j+1, firstOfRow, firstOfRow.getDown());
 		//System.out.println("Este es el row que trae: " + firstOfRow.toString());
 		
@@ -28,7 +29,8 @@ public class LinkedList {
 			Node firstOfNextRow = new Node(i+1, j);
 			firstOfNextRow.setDown(firstOfRow);
 			firstOfRow.setUp(firstOfNextRow);
-			System.out.println("Este es el nodo arriba del first" + first.getUp().toString());
+			//System.out.println("Este es el nodo arriba del first" + first.getUp().toString());
+			//System.out.println("Este es el first que mando de parametro: " + firstOfNextRow.toString());
 			
 			createRows(i+1, j, firstOfNextRow);
 		}
