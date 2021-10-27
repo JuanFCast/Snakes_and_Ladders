@@ -15,20 +15,27 @@ public class LinkedList {
 		numRow = r;
 		numCol = c;
 		createRows(0, 0, first);
-		System.out.println("Este esta arriba del first despues de hacer todo: " + first.getUp().getUp().toString());
 	}
 	
 	public void createRows(int i, int j, Node firstOfRow) {
 		System.out.println("Se crea la fila " + i);
 		System.out.println("Se crea la columna " + j);
-		System.out.println("Este es el first que recibo de parametro: " + firstOfRow.toString());
+		//System.out.println("Este es el first que recibo de parametro: " + firstOfRow.toString());
 		createCol(i, j+1, firstOfRow, firstOfRow.getDown());
 		//System.out.println("Este es el row que trae: " + firstOfRow.toString());
 		
 		if(i+1 < numRow) {
 			Node firstOfNextRow = new Node(i+1, j);
-			firstOfNextRow.setDown(firstOfRow);
 			firstOfRow.setUp(firstOfNextRow);
+			firstOfNextRow.setDown(firstOfRow);
+			System.out.println("Este es el que esta arriba: " + firstOfRow.getUp().toString());
+			System.out.println("Este es el actual: " + firstOfRow.toString());
+			if(firstOfRow.getDown() != null) {
+				System.out.println("Este es el que esta abajo: " + firstOfRow.getDown().toString());
+			} else {
+				System.out.println("No hay nada abajo");
+			}
+			
 			//System.out.println("Este es el nodo arriba del first" + first.getUp().toString());
 			//System.out.println("Este es el first que mando de parametro: " + firstOfNextRow.toString());
 			

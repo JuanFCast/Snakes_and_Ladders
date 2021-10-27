@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String [] team) {
 		Main main = new Main();
-		main.lm.createMatrix(3, 5);
+		main.lm.createMatrix(2, 2);
 		System.out.println(main.lm);
 	}
 	
