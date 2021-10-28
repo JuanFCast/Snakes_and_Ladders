@@ -51,9 +51,9 @@ public class LinkedList {
 			newNode.setPrev(prevNode);
 			
 			if(down != null) {
+				down = down.getNext();
 				down.setUp(newNode);
 				newNode.setDown(down);
-				down = down.getNext();
 			}
 			createCol(i, j+1, newNode, down);
 		}
