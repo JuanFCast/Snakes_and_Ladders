@@ -1,19 +1,18 @@
 package ui;
 
-import model.LinkedList;
+import model.Game;
 
 public class Main {
 
-	private LinkedList lm;
+	private Game snakeAndLadders;
 
 	public Main() {
-		lm = new LinkedList();
+		snakeAndLadders = new Game();
 	}
 
 	public static void main(String [] team) {
-		Main main = new Main();
-		main.lm.createMatrix(4, 3);
-		System.out.println(main.lm);
+		Main m = new Main();
+		m.snakeAndLadders.createBoard(4, 4);
+		System.out.println(m.snakeAndLadders.printBoard());
 	}
-	
 }
