@@ -35,4 +35,8 @@ public class Player {
 	public void setNext(Player p) {
 		nextPlayer = p;
 	}
+	
+	public String toString() {
+		return "" + player;
+	}
 }

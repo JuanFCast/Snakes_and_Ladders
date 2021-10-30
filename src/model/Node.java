@@ -20,6 +20,14 @@ public class Node {
 		col = c;
 	}
 	
+	public void addPlayerInNode(Player p) {
+		if(players == null) {
+			players = p;
+		} else {
+			
+		}
+	}
+	
 	//Getters and Setters
 	public int getNumbNode() {
 		return numbNode;
@@ -71,7 +79,27 @@ public class Node {
 		this.down = down;
 	}
 	
+	//ToString Players in Node
+	private String toStringPlayers(Player p) {
+		String s = "";
+		if(p != null) {
+			s += p.toString();
+			p = p.getNext();
+			toStringPlayers(p);
+		}
+		
+		return s;
+	}
+	
+	
+	//ToString Node
 	public String toString() {
-		return "[" + row + ", " + col + "]";
+		String p = toStringPlayers(players);
+		
+		if(numbNode >= 10) {
+			return "[  " + numbNode + p + "  ]";
+		} else {
+			return "[   " + numbNode + p + "  ]";
+		}
 	}
 }
