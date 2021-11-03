@@ -99,7 +99,7 @@ public class Node {
 		if(numbNode >= 10) {
 			return "[  " + numbNode + p + "  ]";
 		} else {
-			return "[   " + numbNode + p + "  ]";
+			return "[   0" + numbNode + p + "  ]";
 		}
 	}
 }

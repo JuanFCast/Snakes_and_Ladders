@@ -9,7 +9,7 @@ public class Game {
 	}
 	
 	public void createBoard(int r, int c) {
-		board.createMatrix(r, c);
+		board.createBoard(r, c);
 	}
 	
 	public String printBoard() {

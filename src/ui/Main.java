@@ -15,4 +15,6 @@ public class Main {
 		m.snakeAndLadders.createBoard(4, 4);
 		System.out.println(m.snakeAndLadders.printBoard());
 	}
+	
+	
 }

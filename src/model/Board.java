@@ -15,7 +15,7 @@ public class Board {
 		first = new Node(0, 0);
 	}
 
-	public void createMatrix(int r, int c) {
+	public void createBoard(int r, int c) {
 		numRow = r;
 		numCol = c;
 		
