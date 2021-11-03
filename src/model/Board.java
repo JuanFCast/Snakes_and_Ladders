@@ -123,6 +123,10 @@ public class Board {
 		}
 	}
 	
+	public int numbNodes() {
+		return numRow * numCol;
+	}
+	
 	public String toString() {
 		String s = "";
 		Node n = fakeLast(last, numCol);

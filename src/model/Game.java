@@ -4,6 +4,7 @@ public class Game {
 
 	private Board board;
 	private Dice dice;
+	private Winners w;
 	
 	public Game() {
 		board = new Board();
@@ -17,6 +18,4 @@ public class Game {
 	public String printBoard() {
 		return board.toString();
 	}
-	
-	
 }
