@@ -94,10 +94,10 @@ public class Board {
 	}
 	
 	private String toStringRow(Node firstRow) {
-		String s = "";
+		String s = " | ";
 
 		if(firstRow != null) {
-			s = toStringCol(firstRow) + "\n";
+			s += toStringCol(firstRow) + "\n";
 			s += toStringRow(firstRow.getDown());
 		}
 

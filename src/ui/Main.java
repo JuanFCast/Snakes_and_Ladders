@@ -1,6 +1,6 @@
 package ui;
 
-import model.Game;
+import java.io.IOException;
 
 /**
  * This class contains attributes, relationships, and methods of a winner.
@@ -12,16 +12,21 @@ import model.Game;
 
 public class Main {
 
-	private Game snakeAndLadders;
+	private Menu app;
 
 	public Main() {
-		snakeAndLadders = new Game();
+		app = new Menu();
 	}
 
 	public static void main(String [] team) {
-		Main m = new Main();
-		m.snakeAndLadders.createBoard(4, 4);
-		System.out.println(m.snakeAndLadders.printBoard());
+		Main ppal = new Main();
+		try {
+			ppal.app.mainMenu(0);
+		} catch (NumberFormatException e) {
+			
+		} catch (IOException e) {
+		
+		}
 	}
 	
 	
