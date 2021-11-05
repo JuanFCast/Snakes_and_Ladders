@@ -130,7 +130,7 @@ public class Board {
 	}
 	
 	public void addSnakesAndLadders(int s, int l) throws SLoutBoundsException {
-		if((2*s + 2*l + 2) <= getNumbNodes()) {
+		if((2*s + 2*l) <= getNumbNodes()) {
 			addSnakes(s);
 			
 		} else {
