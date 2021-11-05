@@ -7,6 +7,7 @@ public class Node {
 	
 	private int numbNode;
 	private Player players;
+	private char snake;
 	
 	//Nodes around
 	private Node next;
@@ -14,8 +15,7 @@ public class Node {
 	private Node up;
 	private Node down;
 	
-	public Node(int r, int c) 
-	{
+	public Node(int r, int c) {
 		row = r;
 		col = c;
 	}

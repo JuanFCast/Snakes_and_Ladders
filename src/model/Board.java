@@ -1,13 +1,15 @@
 package model;
 
+import exceptions.SLoutBoundsException;
+
 public class Board {
 
 	private Node first;
 	private Node last;
 	
+	
 	private int numRow;
 	private int numCol;
-	
 	private int num = 1;
 	
 	
@@ -123,8 +125,52 @@ public class Board {
 		}
 	}
 	
-	public int numbNodes() {
+	public int getNumbNodes() {
 		return numRow * numCol;
+	}
+	
+	public void addSnakesAndLadders(int s, int l) throws SLoutBoundsException {
+		if((2*s + 2*l + 2) <= getNumbNodes()) {
+			addSnakes(s);
+			
+		} else {
+			throw new SLoutBoundsException();
+		}
+	}
+	
+	private void addSnakes(int s) {
+		Dice dice = new Dice(1, getNumbNodes());
+		int numNode = dice.roll();
+		
+		Node node = searchNode(numNode, first, 0);
+	}
+	
+	private Node searchNode(int nb, Node n, int o) {
+		if(nb > 0) {
+			if(o == 0) {
+				if(n.getNext() != null) {
+					n = n.getNext();
+					searchNode(nb-1, n, o);
+				} else {
+					if(n.getUp() != null) {
+						n = n.getUp();
+						searchNode(nb-1, n, 1);
+					}
+				}
+			} else {
+				if(n.getPrev() != null) {
+					n = n.getPrev();
+					searchNode(nb-1, n, o);
+				} else {
+					if(n.getUp() != null) {
+						n = n.getUp();
+						searchNode(nb-1, n, 0);
+					}
+				}
+			}
+		}
+		
+		return n;
 	}
 	
 	public String toString() {

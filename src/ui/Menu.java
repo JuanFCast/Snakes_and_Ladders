@@ -37,6 +37,7 @@ public class Menu {
 					+ " | Choose: ");
 			
 			int option = Integer.parseInt(br.readLine());
+			System.out.println(" |------------------------------------------------------------|");
 			
 			switch(option) {
 			case 1:
@@ -52,7 +53,7 @@ public class Menu {
 				mainMenu(1);
 				break;
 			default:
-				System.out.println(" | GONZO IS THE BEST");
+				System.out.println(" | Hey you, I hope you have a beautiful day <3");
 				System.out.println(" | You found an easter egg, congratulations!!!");
 				mainMenu(1);
 				break;
@@ -68,11 +69,16 @@ public class Menu {
 		
 		String parts[] = br.readLine().split(" ");
 		System.out.println(" |------------------------------------------------------------|");
-		snakeAndLadders.createBoard(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
+		snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), 0, 0);
 		System.out.println(snakeAndLadders.printBoard());
 	}
 	
 	public void play(String mode) {
 		
+		if(mode.equals(" ")) {
+			
+		} else if(mode.equals("simul")) {
+			
+		}
 	}
 }

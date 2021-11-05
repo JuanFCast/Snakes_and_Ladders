@@ -11,7 +11,7 @@ public class Game {
 		dice = new Dice(1, 6);
 	}
 	
-	public void createBoard(int r, int c) {
+	public void startingGame(int r, int c, int s, int e) {
 		board.createBoard(r, c);
 	}
 	
