@@ -3,7 +3,7 @@ package ui;
 import java.io.IOException;
 
 /**
- * This class contains attributes, relationships, and methods of a winner.
+ * This is Main Class.
  * @version 1
  * @author Juan Felipe Castillo Gomez, https://github.com/JuanFCast
  * @author Juan Camilo Ramirez Tabares, https://github.com/JCamiloRamirezTabares
