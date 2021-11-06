@@ -37,17 +37,38 @@ public class Game {
 		}
 	}
 	
-	public void noEqualsPlayer(String players[], int n) throws NoEqualPlayersException{
-		if(n >= 0) {
-			try {
-				Integer.parseInt(players[n]);
-				throw new NoEqualPlayersException();
-			} catch (NumberFormatException e) {
-				noEqualsPlayer(players, n-1);
-			}
-		}
-	}
+	
+	public void noEqualsPlayer(String players[], int n, int m) throws NoEqualPlayersException{
+		/*
+		String symbol1 = "*";
+		String symbol2 = "!";
+		String symbol3 = "O";
+		String symbol4 = "X";
+		String symbol5 = "%";
+		String symbol6 = "$";
+		String symbol7 = "#";
+		String symbol8 = "+";
+		String symbol9 = "&";
+		*/
+		
+		if (n>=0) {
+			if (m>=0) {
+				if(n!=m && players[n].equals(players[m])) {
 
+					throw new NoEqualPlayersException();
+
+				}else {
+					noEqualsPlayer(players, n, m-1);
+				}
+			}
+			noEqualsPlayer(players, n-1, players.length-1);
+		}
+
+
+
+	}
+	
+	
 	public void startingGame(int r, int c, int s, int e) throws SLoutBoundsException {
 		board.createBoard(r, c);
 		board.addSnakesAndLadders(s, e);

@@ -82,7 +82,7 @@ public class Menu {
 			String parts1[] = parts[4].split("");
 			snakeAndLadders.numberPlayers(parts1);
 			snakeAndLadders.noNumbers(parts1, parts1.length-1);
-			snakeAndLadders.noEqualsPlayer(parts1, parts1.length-1);
+			snakeAndLadders.noEqualsPlayer(parts1, parts1.length-1, parts1.length-1);
 			System.out.println(snakeAndLadders.printBoard());
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
@@ -97,7 +97,7 @@ public class Menu {
 		} catch (NoNumbersException e) {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		} catch (NoEqualPlayersException e) {
-			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
+			System.out.println(" | Players must have different symbols                        |");
 		}
 
 	}
