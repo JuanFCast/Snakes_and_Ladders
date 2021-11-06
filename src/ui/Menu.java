@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import exceptions.SLoutBoundsException;
+import exceptions.InsufficientPlayersForPlayingException;
+import exceptions.MoreThanNinePlayersException;
+import exceptions.NoNumbersException;
 import model.Game;
 
 public class Menu {
@@ -70,15 +73,32 @@ public class Menu {
 		
 		String parts[] = br.readLine().split(" ");
 		System.out.println(" |------------------------------------------------------------|");
+			
 		try {
-			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
+					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+			
+			String parts1[] = parts[4].split("");
+			numberPlayers(parts1);
+			noNumbers(parts1, parts1.length-1);
 			System.out.println(snakeAndLadders.printBoard());
-		} catch (NumberFormatException e) {
-		} catch (SLoutBoundsException e) {
-			System.out.println("Snakes and Ladders exceed the allowed limit");
+		} catch (NumberFormatException e1) {
+			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
+		} catch (SLoutBoundsException e1) {
+			System.out.println(" | Snakes and Ladders exceed the allowed limit");
+		} catch (MoreThanNinePlayersException e) {
+			System.out.println(" | Players exceed the allowed limit                           |");
+			mainMenu(0);
+		} catch (InsufficientPlayersForPlayingException e) {
+			System.out.println(" | Insufficient players to start the game                     |");
+			mainMenu(0);
+		} catch (NoNumbersException e) {
+			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		}
 		
 	}
+	
+	
 	
 	public void play(String mode) {
 		
@@ -88,4 +108,24 @@ public class Menu {
 			
 		}
 	}
+	
+	public void numberPlayers(String players[]) throws MoreThanNinePlayersException, InsufficientPlayersForPlayingException {
+		if(players.length>9) {
+			throw new MoreThanNinePlayersException();
+		} else if(players.length<2) {
+			throw new InsufficientPlayersForPlayingException();
+		}
+	}
+	
+	public void noNumbers(String players[], int n) throws NoNumbersException{
+		if(n >= 0) {
+			try {
+				Integer.parseInt(players[n]);
+				throw new NoNumbersException();
+			} catch (NumberFormatException e) {
+				noNumbers(players, n-1);
+			}
+		}
+	}
+	
 }
