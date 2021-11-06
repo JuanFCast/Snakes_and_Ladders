@@ -11,14 +11,14 @@ import exceptions.NoNumbersException;
 import model.Game;
 
 public class Menu {
-	
+
 	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private Game snakeAndLadders = new Game();
 
 	public Menu() {
 		welcome();
 	}
-	
+
 	public void welcome() {
 		System.out.println(" |============================================================|\n"
 				+ " |=================|        WELCOME TO      |=================|\n"
@@ -27,7 +27,7 @@ public class Menu {
 				+ " |=================|   Developed by J.J.J   |=================|\n"
 				+ " |============================================================|\n");
 	}
-	
+
 	public void mainMenu(int o) throws NumberFormatException, IOException {
 		if(o != 1) {
 			System.out.print(" |------------------------------------------------------------|\n"
@@ -39,10 +39,10 @@ public class Menu {
 					+ " |                                                            |\n"
 					+ " |------------------------------------------------------------|\n"
 					+ " | Choose: ");
-			
+
 			int option = Integer.parseInt(br.readLine());
 			System.out.println(" |------------------------------------------------------------|");
-			
+
 			switch(option) {
 			case 1:
 				startGame();
@@ -64,20 +64,20 @@ public class Menu {
 			}
 		}
 	}
-	
+
 	public void startGame() throws IOException {
 		System.out.print(" | Please enter the following values on the same line:        |\n"
 				+ " |   o ROWS COLUMNS SNAKES LADDERS PLAYERS                    |\n"
 				+ " |                                                            |\n"
 				+ " |     Values: ");
-		
+
 		String parts[] = br.readLine().split(" ");
 		System.out.println(" |------------------------------------------------------------|");
-			
+
 		try {
 			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-			
+
 			String parts1[] = parts[4].split("");
 			numberPlayers(parts1);
 			noNumbers(parts1, parts1.length-1);
@@ -95,20 +95,20 @@ public class Menu {
 		} catch (NoNumbersException e) {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 	public void play(String mode) {
-		
+
 		if(mode.equals(" ")) {
-			
+
 		} else if(mode.equals("simul")) {
-			
+
 		}
 	}
-	
+
 	public void numberPlayers(String players[]) throws MoreThanNinePlayersException, InsufficientPlayersForPlayingException {
 		if(players.length>9) {
 			throw new MoreThanNinePlayersException();
@@ -116,7 +116,7 @@ public class Menu {
 			throw new InsufficientPlayersForPlayingException();
 		}
 	}
-	
+
 	public void noNumbers(String players[], int n) throws NoNumbersException{
 		if(n >= 0) {
 			try {
@@ -127,5 +127,5 @@ public class Menu {
 			}
 		}
 	}
-	
+
 }

@@ -22,8 +22,8 @@ public class Winners extends Player{
 	public void calculateScore(int numbNodes) {
 		score = (double) getNumbMovements() * numbNodes;
 	}
-	
-	
+
+
 	//Getters and Setters
 	public String getNamePlayer() {
 		return namePlayer;
