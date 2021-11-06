@@ -156,7 +156,7 @@ public class Board {
 		return n;
 	}
 	
-	private Node createSnake(int i, Node nd) {
+	private Node createSnake(int i, Node nd) { //Metodo fallando
 		if(i == 0 && nd != first) {
 			Node n = nd;
 			if(n.getSnake() == null && n.getLadder() == null) {
@@ -165,6 +165,7 @@ public class Board {
 				return null;
 			}
 		}
+		return nd;
 	}
 	
 	private void moveLeft(int i, Node n) {

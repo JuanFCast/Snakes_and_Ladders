@@ -64,14 +64,6 @@ public class Winners extends Player{
 		this.right = right;
 	}
 
-
-
-	/**
-	 * This method produces a String with all the information about Winner. <br>
-	 * <b>name</b>: toString.<br>
-	 * <b>post</b>: All the information of a Winner was returned. <br>
-	 * @return out in a <code> String </code> variable all the information about a Winner.
-	 */ 
 	public String toString() {
 		return " | " + position + " | " + namePlayer + " | " + get() + " | "  + score + " | ";
 	}
