@@ -13,7 +13,6 @@ public class Game {
 	private Winners w;
 
 	public Game() {
-		board = new Board();
 		dice = new Dice(1, 6);
 	}
 	
@@ -70,6 +69,7 @@ public class Game {
 	
 	
 	public void startingGame(int r, int c, int s, int e) throws SLoutBoundsException {
+		board = new Board();
 		board.createBoard(r, c);
 		board.addSnakesAndLadders(s, e);
 	}

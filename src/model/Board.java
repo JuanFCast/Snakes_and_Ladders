@@ -6,12 +6,15 @@ public class Board {
 
 	private Node first;
 	private Node last;
-
-
+	
+	private Node aux;
+	
 	private int numRow;
 	private int numCol;
 	private int num = 1;
-
+	
+	private char globalChar = 'A';
+	private int globalInt = 1;
 
 	public Board() {
 		first = new Node(0, 0);
@@ -132,42 +135,92 @@ public class Board {
 	public void addSnakesAndLadders(int s, int l) throws SLoutBoundsException {
 		if((2*s + 2*l) <= getNumbNodes()) {
 			addSnakes(s);
-
+			addLadders(l);
 		} else {
 			throw new SLoutBoundsException();
 		}
 	}
+	
 
 	private void addSnakes(int s) {
 		if(s > 0) {
-			Dice dice = new Dice(1, getNumbNodes());
+			Dice dice = new Dice(0, getNumbNodes()-1);
 			int i = dice.roll();
-			Node part = createSnake(i, first);
-			if(part == null) {
+			createLinked(i);
+			Node head = aux;
+			
+			i = dice.roll();
+			createLinked(i);
+			Node tail = aux;
+			if(verifySnake(head, tail) == true) {
+				head.setSnake(new Linked(globalChar, head, tail));
+				tail.setSnake(new Linked(globalChar, head, tail));
+				globalChar = (char)(globalChar + 1);
+				addSnakes(s-1);
+			} else {
 				addSnakes(s);
-			} else {
-				System.out.println("Salio en el dado: " + i);
-				System.out.println("Soy el nodo i: " + part.toString());
 			}
 		}
 	}
-
-	private Node saveNode(Node n) {
-		return n;
-	}
-
-	private Node createSnake(int i, Node nd) { //Metodo fallando
-		if(i == 0 && nd != first) {
-			Node n = nd;
-			if(n.getSnake() == null && n.getLadder() == null) {
-				return n;
+	
+	private void addLadders(int l) {
+		if(l > 0) {
+			Dice dice = new Dice(1, getNumbNodes()-1);
+			int i = dice.roll();
+			createLinked(i);
+			Node start = aux;
+			
+			i = dice.roll();
+			createLinked(i);
+			Node end = aux;
+			if(verifyLadder(start, end) == true) {
+				start.setLadder(new Linked(globalInt, start, end));
+				end.setLadder(new Linked(globalInt, start, end));
+				globalInt++;;
+				addLadders(l-1);
 			} else {
-				return null;
+				addLadders(l);
 			}
 		}
-		return nd;
 	}
-
+	
+	private boolean verifySnake(Node h, Node t) {
+		if(h != t) {
+			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
+				if(h.getNumbNode() > t.getNumbNode()) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean verifyLadder(Node h, Node t) {
+		if(h != t) {
+			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
+				if(h.getNumbNode() < t.getNumbNode()) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	private void createLinked(int i) {
+		moveRight(i, first);
+	}
+	
+	
 	private void moveLeft(int i, Node n) {
 		if(i > 0) {
 			if(n.getPrev() != null) {
@@ -176,13 +229,11 @@ public class Board {
 				if(n.getUp() != null) {
 					moveRight(i-1, n.getUp());
 				} else {
-					Node part = saveNode(null);
-					createSnake(i, part);
+					aux = null;
 				}
 			}
 		} else {
-			Node part = saveNode(n);
-			createSnake(i, part);
+			aux = n;
 		}
 	}
 
@@ -194,13 +245,11 @@ public class Board {
 				if(n.getUp() != null) {
 					moveLeft(i-1, n.getUp());
 				} else {
-					Node part = saveNode(null);
-					createSnake(i, part);
+					aux = null;
 				}
 			}
 		} else {
-			Node part = saveNode(n);
-			createSnake(i, part);
+			aux = n;
 		}
 	}
 
