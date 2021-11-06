@@ -283,8 +283,7 @@ public class Board {
 
 		return s;
 	}
-	
-	
+		
 	//To Strings for the Boards
 	public String completeBoard() {
 		String s = "";
