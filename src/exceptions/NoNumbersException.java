@@ -7,5 +7,5 @@ public class NoNumbersException extends Exception{
 	public NoNumbersException() {
 		super("The players should be chars");
 	}
-	
+
 }

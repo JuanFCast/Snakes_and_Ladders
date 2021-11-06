@@ -1,39 +1,39 @@
 package model;
 
 public class Node {
-	
+
 	private int row;
 	private int col;
-	
+
 	private int numbNode;
 	private Player players;
 	private Linked snake;
 	private Linked ladder;
-	
+
 	//Nodes around
 	private Node next;
 	private Node prev;
 	private Node up;
 	private Node down;
-	
+
 	public Node(int r, int c) {
 		row = r;
 		col = c;
 	}
-	
+
 	public void addPlayerInNode(Player p) {
 		if(players == null) {
 			players = p;
 		} else {
-			
+
 		}
 	}
-	
+
 	//Getters and Setters
 	public int getNumbNode() {
 		return numbNode;
 	}
-	
+
 	public void setNumbNode(int numbNode) {
 		this.numbNode = numbNode;
 	}
@@ -79,8 +79,8 @@ public class Node {
 	public void setDown(Node down) {
 		this.down = down;
 	}
-	
-	
+
+
 	//For Snakes and Ladders
 	public Linked getSnake() {
 		return snake;
@@ -106,27 +106,27 @@ public class Node {
 			p = p.getNext();
 			toStringPlayers(p);
 		}
-		
+
 		return s;
 	}
-	
+
 	private String toStringSnakesAndLadders(Linked s) {
 		String m = "";
 		if(s != null) {
 			m += s.toString();
 		}
-		
+
 		return m;
 	}
-	
-	
+
+
 	//ToString Node
 	public String toString() {
 		String s = toStringSnakesAndLadders(snake);
 		String l = toStringSnakesAndLadders(ladder);
 		String p = toStringPlayers(players);
 		String t = " ";
-		
+
 		if(numbNode >= 10) {
 			t += numbNode;
 		} else {

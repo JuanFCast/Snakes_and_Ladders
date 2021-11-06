@@ -7,18 +7,19 @@ import java.io.InputStreamReader;
 import exceptions.SLoutBoundsException;
 import exceptions.InsufficientPlayersForPlayingException;
 import exceptions.MoreThanNinePlayersException;
+import exceptions.NoEqualPlayersException;
 import exceptions.NoNumbersException;
 import model.Game;
 
 public class Menu {
-	
+
 	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private Game snakeAndLadders = new Game();
 
 	public Menu() {
 		welcome();
 	}
-	
+
 	public void welcome() {
 		System.out.println(" |============================================================|\n"
 				+ " |=================|        WELCOME TO      |=================|\n"
@@ -27,7 +28,7 @@ public class Menu {
 				+ " |=================|   Developed by J.J.J   |=================|\n"
 				+ " |============================================================|\n");
 	}
-	
+
 	public void mainMenu(int o) throws NumberFormatException, IOException {
 		if(o != 1) {
 			System.out.print(" |------------------------------------------------------------|\n"
@@ -39,10 +40,10 @@ public class Menu {
 					+ " |                                                            |\n"
 					+ " |------------------------------------------------------------|\n"
 					+ " | Choose: ");
-			
+
 			int option = Integer.parseInt(br.readLine());
 			System.out.println(" |------------------------------------------------------------|");
-			
+
 			switch(option) {
 			case 1:
 				startGame();
@@ -64,23 +65,24 @@ public class Menu {
 			}
 		}
 	}
-	
+
 	public void startGame() throws IOException {
 		System.out.print(" | Please enter the following values on the same line:        |\n"
 				+ " |   o ROWS COLUMNS SNAKES LADDERS PLAYERS                    |\n"
 				+ " |                                                            |\n"
 				+ " |     Values: ");
-		
+
 		String parts[] = br.readLine().split(" ");
 		System.out.println(" |------------------------------------------------------------|");
-			
+
 		try {
 			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-			
+
 			String parts1[] = parts[4].split("");
-			numberPlayers(parts1);
-			noNumbers(parts1, parts1.length-1);
+			snakeAndLadders.numberPlayers(parts1);
+			snakeAndLadders.noNumbers(parts1, parts1.length-1);
+			snakeAndLadders.noEqualsPlayer(parts1, parts1.length-1, parts1.length-1);
 			System.out.println(snakeAndLadders.printBoard());
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
@@ -94,38 +96,25 @@ public class Menu {
 			mainMenu(0);
 		} catch (NoNumbersException e) {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
+		} catch (NoEqualPlayersException e) {
+			System.out.println(" | Players must have different symbols                        |");
 		}
-		
+
 	}
-	
-	
-	
+
+
+
 	public void play(String mode) {
-		
+
 		if(mode.equals(" ")) {
-			
+
 		} else if(mode.equals("simul")) {
-			
+
 		}
 	}
+
 	
-	public void numberPlayers(String players[]) throws MoreThanNinePlayersException, InsufficientPlayersForPlayingException {
-		if(players.length>9) {
-			throw new MoreThanNinePlayersException();
-		} else if(players.length<2) {
-			throw new InsufficientPlayersForPlayingException();
-		}
-	}
+
 	
-	public void noNumbers(String players[], int n) throws NoNumbersException{
-		if(n >= 0) {
-			try {
-				Integer.parseInt(players[n]);
-				throw new NoNumbersException();
-			} catch (NumberFormatException e) {
-				noNumbers(players, n-1);
-			}
-		}
-	}
-	
+
 }
