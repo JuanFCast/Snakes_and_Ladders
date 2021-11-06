@@ -125,11 +125,29 @@ public class Node {
 		String s = toStringSnakesAndLadders(snake);
 		String l = toStringSnakesAndLadders(ladder);
 		String p = toStringPlayers(players);
+		String t = " ";
 		
 		if(numbNode >= 10) {
-			return "[  " + numbNode + s + l + p + "  ]";
+			t += numbNode;
 		} else {
-			return "[   " + numbNode +  s + l + p + "  ]";
+			t += "" + numbNode;
 		}
+		if(s.equals("")) {
+			t += "";
+		} else {
+			t += s;
+		}
+		if(l.equals("")) {
+			t += "";
+		} else {
+			t += l;
+		}
+		if(p.equals("")) {
+			t += "   ";
+		} else {
+			t += p;
+		}
+		
+		return "[ " + t + "]";
 	}
 }

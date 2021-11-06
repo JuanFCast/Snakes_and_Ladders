@@ -35,9 +35,9 @@ public class Linked {
 	
 	public String toString() {
 		if(nameLadders == 0) {
-			return " " + nameSnake;
+			return "" + nameSnake;
 		} else {
-			return " " + nameLadders;
+			return "" + nameLadders;
 		}
 	}
 	
