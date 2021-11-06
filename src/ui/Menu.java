@@ -83,7 +83,7 @@ public class Menu {
 			snakeAndLadders.numberPlayers(parts1);
 			snakeAndLadders.noNumbers(parts1, parts1.length-1);
 			snakeAndLadders.noEqualsPlayer(parts1, parts1.length-1, parts1.length-1);
-			System.out.println(snakeAndLadders.printBoard());
+			System.out.println(snakeAndLadders.printSimpleBoard());
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
 		} catch (SLoutBoundsException e1) {

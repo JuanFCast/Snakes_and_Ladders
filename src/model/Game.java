@@ -74,8 +74,12 @@ public class Game {
 		board.addSnakesAndLadders(s, e);
 	}
 
-	public String printBoard() {
-		return board.toString();
+	public String printSimpleBoard() {
+		return board.simpleBoard();
+	}
+	
+	public String printCompleteBoard() {
+		return board.completeBoard();
 	}
 	
 	
