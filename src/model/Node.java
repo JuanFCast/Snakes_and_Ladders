@@ -21,13 +21,22 @@ public class Node {
 		col = c;
 	}
 
-	public void addPlayerInNode(Player p) {
-		if(players == null) {
-			players = p;
-		} else {
+	
+	public void addPlayerInNode(Player p){
+        if(players==null) {
+        	players = p;
+        }else {
+        	addPlayerInNode(players, p);
+        }
+    }
 
-		}
-	}
+    public void addPlayerInNode(Player current, Player p) {
+        if(current.getNext() ==  null) {
+            current.setNext(p);
+        }else {
+        	addPlayerInNode(current.getNext(),p);
+        }
+    }
 
 	//Getters and Setters
 	public int getNumbNode() {
@@ -103,8 +112,7 @@ public class Node {
 		String s = "";
 		if(p != null) {
 			s += p.toString();
-			p = p.getNext();
-			toStringPlayers(p);
+			s += toStringPlayers(p.getNext());
 		}
 
 		return s;

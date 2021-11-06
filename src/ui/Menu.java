@@ -76,14 +76,14 @@ public class Menu {
 		System.out.println(" |------------------------------------------------------------|");
 
 		try {
+			String players[] = parts[4].split("");
 			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
-					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-
-			String parts1[] = parts[4].split("");
-			snakeAndLadders.numberPlayers(parts1);
-			snakeAndLadders.noNumbers(parts1, parts1.length-1);
-			snakeAndLadders.noEqualsPlayer(parts1, parts1.length-1, parts1.length-1);
+					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), players );
+			snakeAndLadders.numberPlayers(players);
+			snakeAndLadders.noNumbers(players, players.length-1);
+			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
 			System.out.println(snakeAndLadders.printBoard());
+			
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
 		} catch (SLoutBoundsException e1) {
