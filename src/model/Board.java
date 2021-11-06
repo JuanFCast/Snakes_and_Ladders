@@ -33,7 +33,7 @@ public class Board {
 			firstOfRow.setUp(firstOfNextRow);
 			firstOfNextRow.setDown(firstOfRow);
 			
-			createRows(i+1, j, firstOfNextRow); //Por razon que se desconoce el -1 corrige un bug que no he podido solucionar
+			createRows(i+1, j, firstOfNextRow); 
 		}
 	}
 	
