@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import exceptions.SLoutBoundsException;
 import model.Game;
 
 public class Menu {
@@ -69,8 +70,14 @@ public class Menu {
 		
 		String parts[] = br.readLine().split(" ");
 		System.out.println(" |------------------------------------------------------------|");
-		snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), 0, 0);
-		System.out.println(snakeAndLadders.printBoard());
+		try {
+			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+			System.out.println(snakeAndLadders.printBoard());
+		} catch (NumberFormatException e) {
+		} catch (SLoutBoundsException e) {
+			System.out.println("Snakes and Ladders exceed the allowed limit");
+		}
+		
 	}
 	
 	public void play(String mode) {

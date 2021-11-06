@@ -7,7 +7,8 @@ public class Node {
 	
 	private int numbNode;
 	private Player players;
-	private char snake;
+	private Linked snake;
+	private Linked ladder;
 	
 	//Nodes around
 	private Node next;
@@ -79,6 +80,24 @@ public class Node {
 		this.down = down;
 	}
 	
+	
+	//For Snakes and Ladders
+	public Linked getSnake() {
+		return snake;
+	}
+
+	public Linked getLadder() {
+		return ladder;
+	}
+
+	public void setSnake(Linked snake) {
+		this.snake = snake;
+	}
+
+	public void setLadder(Linked ladder) {
+		this.ladder = ladder;
+	}
+
 	//ToString Players in Node
 	private String toStringPlayers(Player p) {
 		String s = "";
@@ -91,15 +110,26 @@ public class Node {
 		return s;
 	}
 	
+	private String toStringSnakesAndLadders(Linked s) {
+		String m = "";
+		if(s != null) {
+			m += s.toString();
+		}
+		
+		return m;
+	}
+	
 	
 	//ToString Node
 	public String toString() {
+		String s = toStringSnakesAndLadders(snake);
+		String l = toStringSnakesAndLadders(ladder);
 		String p = toStringPlayers(players);
 		
 		if(numbNode >= 10) {
-			return "[  " + numbNode + p + "  ]";
+			return "[  " + numbNode + s + l + p + "  ]";
 		} else {
-			return "[   " + numbNode + p + "  ]";
+			return "[   " + numbNode +  s + l + p + "  ]";
 		}
 	}
 }

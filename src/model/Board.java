@@ -139,38 +139,68 @@ public class Board {
 	}
 	
 	private void addSnakes(int s) {
-		Dice dice = new Dice(1, getNumbNodes());
-		int numNode = dice.roll();
-		
-		Node node = searchNode(numNode, first, 0);
-	}
-	
-	private Node searchNode(int nb, Node n, int o) {
-		if(nb > 0) {
-			if(o == 0) {
-				if(n.getNext() != null) {
-					n = n.getNext();
-					searchNode(nb-1, n, o);
-				} else {
-					if(n.getUp() != null) {
-						n = n.getUp();
-						searchNode(nb-1, n, 1);
-					}
-				}
+		if(s > 0) {
+			Dice dice = new Dice(1, getNumbNodes());
+			int i = dice.roll();
+			Node part = createSnake(i, first);
+			if(part == null) {
+				addSnakes(s);
 			} else {
-				if(n.getPrev() != null) {
-					n = n.getPrev();
-					searchNode(nb-1, n, o);
-				} else {
-					if(n.getUp() != null) {
-						n = n.getUp();
-						searchNode(nb-1, n, 0);
-					}
-				}
+				System.out.println("Salio en el dado: " + i);
+				System.out.println("Soy el nodo i: " + part.toString());
 			}
 		}
-		
+	}
+	
+	private Node saveNode(Node n) {
 		return n;
+	}
+	
+	private Node createSnake(int i, Node nd) {
+		if(i == 0 && nd != first) {
+			Node n = nd;
+			if(n.getSnake() == null && n.getLadder() == null) {
+				return n;
+			} else {
+				return null;
+			}
+		}
+	}
+	
+	private void moveLeft(int i, Node n) {
+		if(i > 0) {
+			if(n.getPrev() != null) {
+				moveLeft(i-1, n.getPrev());
+			} else {
+				if(n.getUp() != null) {
+					moveRight(i-1, n.getUp());
+				} else {
+					Node part = saveNode(null);
+					createSnake(i, part);
+				}
+			}
+		} else {
+			Node part = saveNode(n);
+			createSnake(i, part);
+		}
+	}
+	
+	private void moveRight(int i, Node n) {
+		if(i > 0) {
+			if(n.getNext() != null) {
+				moveRight(i-1, n.getNext());
+			} else {
+				if(n.getUp() != null) {
+					moveLeft(i-1, n.getUp());
+				} else {
+					Node part = saveNode(null);
+					createSnake(i, part);
+				}
+			}
+		} else {
+			Node part = saveNode(n);
+			createSnake(i, part);
+		}
 	}
 	
 	public String toString() {
