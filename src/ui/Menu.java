@@ -82,7 +82,7 @@ public class Menu {
 			snakeAndLadders.numberPlayers(players);
 			snakeAndLadders.noNumbers(players, players.length-1);
 			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
-			System.out.println(snakeAndLadders.printBoard());
+			System.out.println(snakeAndLadders.printSimpleBoard());
 			
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");

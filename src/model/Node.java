@@ -129,10 +129,9 @@ public class Node {
 
 
 	//ToString Node
-	public String toString() {
+	public String simpleBoard() {
 		String s = toStringSnakesAndLadders(snake);
 		String l = toStringSnakesAndLadders(ladder);
-		String p = toStringPlayers(players);
 		String t = " ";
 
 		if(numbNode >= 10) {
@@ -140,6 +139,28 @@ public class Node {
 		} else {
 			t += "" + numbNode;
 		}
+		if(s.equals("")) {
+			t += "";
+		} else {
+			t += s;
+		}
+		if(l.equals("")) {
+			t += "";
+		} else {
+			t += l;
+		}
+		
+		return "[ " + t + "]";
+	}
+	
+	
+	
+	public String completeBoard() {
+		String s = toStringSnakesAndLadders(snake);
+		String l = toStringSnakesAndLadders(ladder);
+		String p = toStringPlayers(players);
+		String t = " ";
+
 		if(s.equals("")) {
 			t += "";
 		} else {

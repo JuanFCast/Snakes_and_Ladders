@@ -98,28 +98,6 @@ public class Board {
 		}
 	}
 
-	private String toStringRow(Node firstRow) {
-		String s = " | ";
-
-		if(firstRow != null) {
-			s += toStringCol(firstRow) + "\n";
-			s += toStringRow(firstRow.getDown());
-		}
-
-		return s;
-	}
-
-	private String toStringCol(Node current) {
-		String s = "";
-
-		if(current != null) {
-			s += current.toString();
-			s += toStringCol(current.getNext());
-		}
-
-		return s;
-	}
-
 	private Node fakeLast(Node l, int c) {
 		if(c > 1) {
 			return fakeLast(l.getPrev(), c-1);
@@ -188,7 +166,6 @@ public class Board {
 		if (i<player.length) {
 			Player p = new Player((player[i].charAt(0)));
 			first.addPlayerInNode(p);
-			System.out.println("este es el char " + i + p.get());
 			addPlayers(player, i+1);
 		}
 		
@@ -262,11 +239,65 @@ public class Board {
 			aux = n;
 		}
 	}
+	
+	private String toStringRow1(Node firstRow) {
+		String s = " | ";
 
-	public String toString() {
+		if(firstRow != null) {
+			s += toStringCol1(firstRow) + "\n";
+			s += toStringRow1(firstRow.getDown());
+		}
+
+		return s;
+	}
+
+	private String toStringCol1(Node current) {
+		String s = "";
+
+		if(current != null) {
+			s += current.simpleBoard();
+			s += toStringCol1(current.getNext());
+		}
+
+		return s;
+	}
+
+	private String toStringRow2(Node firstRow) {
+		String s = " | ";
+
+		if(firstRow != null) {
+			s += toStringCol2(firstRow) + "\n";
+			s += toStringRow2(firstRow.getDown());
+		}
+
+		return s;
+	}
+
+	private String toStringCol2(Node current) {
+		String s = "";
+
+		if(current != null) {
+			s += current.completeBoard();
+			s += toStringCol2(current.getNext());
+		}
+
+		return s;
+	}
+	
+	
+	//To Strings for the Boards
+	public String completeBoard() {
 		String s = "";
 		Node n = fakeLast(last, numCol);
-		s += toStringRow(n);
+		s += toStringRow2(n);
+
+		return s;
+	}
+	
+	public String simpleBoard() {
+		String s = "";
+		Node n = fakeLast(last, numCol);
+		s += toStringRow1(n);
 
 		return s;
 	}
