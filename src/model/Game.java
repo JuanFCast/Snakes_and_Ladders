@@ -16,6 +16,12 @@ public class Game {
 		dice = new Dice(1, 6);
 	}
 	
+	public void startingGame(int r, int c, int s, int e, String p[]) throws SLoutBoundsException {
+		board = new Board();
+		board.createBoard(r, c);
+		board.addSnakesAndLadders(s, e);
+		board.addPlayers(p, 0);
+	}
 	
 	public void noNumbers(String players[], int n) throws NoNumbersException{
 		if(n >= 0) {
@@ -68,11 +74,7 @@ public class Game {
 	}
 	
 	
-	public void startingGame(int r, int c, int s, int e) throws SLoutBoundsException {
-		board = new Board();
-		board.createBoard(r, c);
-		board.addSnakesAndLadders(s, e);
-	}
+	
 
 	public String printSimpleBoard() {
 		return board.simpleBoard();

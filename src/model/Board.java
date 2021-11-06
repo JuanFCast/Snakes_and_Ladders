@@ -161,6 +161,15 @@ public class Board {
 		}
 	}
 	
+	public void addPlayers(String player[], int i) {
+		if (i<player.length) {
+			Player p = new Player((player[i].charAt(0)));
+			first.addPlayerInNode(p);
+			addPlayers(player, i+1);
+		}
+		
+	}
+	
 	private boolean verifySnake(Node h, Node t) {
 		if(h != t) {
 			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
