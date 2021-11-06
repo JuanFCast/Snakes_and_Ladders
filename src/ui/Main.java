@@ -23,11 +23,11 @@ public class Main {
 		try {
 			ppal.app.mainMenu(0);
 		} catch (NumberFormatException e) {
-			
+
 		} catch (IOException e) {
-		
+
 		}
 	}
-	
-	
+
+
 }

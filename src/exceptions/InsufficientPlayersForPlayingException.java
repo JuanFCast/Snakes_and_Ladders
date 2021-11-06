@@ -7,5 +7,5 @@ public class InsufficientPlayersForPlayingException extends Exception {
 	public InsufficientPlayersForPlayingException() {
 		super("Insufficient players to start the game");
 	}
-	
+
 }

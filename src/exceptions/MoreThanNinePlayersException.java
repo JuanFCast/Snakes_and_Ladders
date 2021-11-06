@@ -7,5 +7,5 @@ public class MoreThanNinePlayersException extends Exception{
 	public MoreThanNinePlayersException(){
 		super("Players exceed the allowed limit");
 	}
-	
+
 }
