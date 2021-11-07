@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import exceptions.SLoutBoundsException;
+import exceptions.signsExeption;
 import exceptions.InsufficientPlayersForPlayingException;
 import exceptions.MoreThanNinePlayersException;
 import exceptions.NoEqualPlayersException;
@@ -82,6 +83,7 @@ public class Menu {
 			snakeAndLadders.numberPlayers(players);
 			snakeAndLadders.noNumbers(players, players.length-1);
 			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
+			snakeAndLadders.signs(players, players.length-1);
 			System.out.println(snakeAndLadders.printSimpleBoard());
 			br.readLine();
 			System.out.println(snakeAndLadders.printCompleteBoard());
@@ -101,6 +103,8 @@ public class Menu {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		} catch (NoEqualPlayersException e) {
 			System.out.println(" | Players must have different symbols                        |");
+		} catch (signsExeption e) {
+			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		}
 
 	}
