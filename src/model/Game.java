@@ -73,8 +73,13 @@ public class Game {
 
 	}
 	
-	
-	
+	public Winners getW() {
+		return w;
+	}
+
+	public void setW(Winners w) {
+		this.w = w;
+	}
 
 	public String printSimpleBoard() {
 		return board.simpleBoard();
@@ -83,6 +88,5 @@ public class Game {
 	public String printCompleteBoard() {
 		return board.completeBoard();
 	}
-	
-	
+		
 }

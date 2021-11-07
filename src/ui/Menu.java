@@ -83,6 +83,9 @@ public class Menu {
 			snakeAndLadders.noNumbers(players, players.length-1);
 			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
 			System.out.println(snakeAndLadders.printSimpleBoard());
+			br.readLine();
+			System.out.println(snakeAndLadders.printCompleteBoard());
+			playing();
 			
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
@@ -102,14 +105,24 @@ public class Menu {
 
 	}
 
+	public void playing() throws IOException {
+		if(snakeAndLadders.getW()==null) {
+			String option = br.readLine();
+			play(option);
+			System.out.println(snakeAndLadders.printCompleteBoard());
+			playing();
+		}
+	}
 
-
-	public void play(String mode) {
+	public void play(String mode) throws IOException {
 
 		if(mode.equals(" ")) {
 
 		} else if(mode.equals("simul")) {
 
+		}else if(mode.equals("num")) {
+			System.out.println(snakeAndLadders.printSimpleBoard());
+			br.readLine();
 		}
 	}
 
