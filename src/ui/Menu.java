@@ -108,9 +108,14 @@ public class Menu {
 	public void playing() throws IOException {
 		if(snakeAndLadders.getW()==null) {
 			String option = br.readLine();
-			play(option);
-			System.out.println(snakeAndLadders.printCompleteBoard());
-			playing();
+			if(option.equals("menu")) {
+				
+			}else {
+				play(option);
+				System.out.println(snakeAndLadders.printCompleteBoard());
+				playing();
+			}
+			
 		}
 	}
 
@@ -119,12 +124,10 @@ public class Menu {
 		if(mode.equals(" ")) {
 			
 		} else if(mode.equals("simul")) {
-
+			
 		}else if(mode.equals("num")) {
 			System.out.println(snakeAndLadders.printSimpleBoard());
 			br.readLine();
-		} else if(mode.equals("menu")) {
-			mainMenu(0);
 		}
 	}
 
