@@ -10,7 +10,6 @@ public class Game {
 
 	private Board board;
 	private Dice dice;
-	private Winners w;
 
 	public Game() {
 		dice = new Dice(1, 6);
@@ -21,6 +20,12 @@ public class Game {
 		board.createBoard(r, c);
 		board.addSnakesAndLadders(s, e);
 		board.addPlayers(p, 0);
+		board.setNumberPlayers();
+	}
+	
+	public void play() {
+		int n = dice.roll();
+		
 	}
 	
 	public void noNumbers(String players[], int n) throws NoNumbersException{
@@ -76,6 +81,7 @@ public class Game {
 	
 	
 
+	//Prints Boards
 	public String printSimpleBoard() {
 		return board.simpleBoard();
 	}
@@ -83,6 +89,4 @@ public class Game {
 	public String printCompleteBoard() {
 		return board.completeBoard();
 	}
-	
-	
 }

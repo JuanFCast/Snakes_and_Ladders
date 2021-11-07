@@ -3,7 +3,7 @@ package model;
 public class Player {
 
 	private char player;
-	private String numPlayer;
+	private int numPlayer;
 	private int numbMovements;
 	private int diceMovements;
 
@@ -25,8 +25,12 @@ public class Player {
 		player = c;
 	}
 
-	public String getNumPlayer() {
+	public int getNumPlayer() {
 		return numPlayer;
+	}
+	
+	public void setNumPlayer(int numPlayer) {
+		this.numPlayer = numPlayer;
 	}
 
 	public int getNumbMovements() {

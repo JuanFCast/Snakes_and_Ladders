@@ -30,13 +30,25 @@ public class Node {
         }
     }
 
-    public void addPlayerInNode(Player current, Player p) {
+    private void addPlayerInNode(Player current, Player p) {
         if(current.getNext() ==  null) {
             current.setNext(p);
         }else {
         	addPlayerInNode(current.getNext(),p);
         }
     }
+    
+    public void setNumbersPlayer() {
+    	setNumbersPlayer(players, 1);
+    }
+    
+    private void setNumbersPlayer(Player p, int i) {
+    	if(p != null) {
+    		p.setNumPlayer(i);
+    		setNumbersPlayer(p.getNext(), i+1);
+    	}
+    }
+    
 
 	//Getters and Setters
 	public int getNumbNode() {
@@ -137,18 +149,19 @@ public class Node {
 		if(numbNode >= 10) {
 			t += numbNode;
 		} else {
-			t += "" + numbNode;
+			t += " " + numbNode;
 		}
 		if(s.equals("")) {
-			t += "";
+			t = " " + t;
 		} else {
 			t += s;
 		}
 		if(l.equals("")) {
-			t += "";
+			t = " " + t;
 		} else {
 			t += l;
 		}
+		t+= "  ";
 		
 		return "[ " + t + "]";
 	}
@@ -162,17 +175,17 @@ public class Node {
 		String t = " ";
 
 		if(s.equals("")) {
-			t += "";
+			t = " " + t;
 		} else {
 			t += s;
 		}
 		if(l.equals("")) {
-			t += "";
+			t = " " + t;
 		} else {
 			t += l;
 		}
 		if(p.equals("")) {
-			t += "   ";
+			t = " " + t;
 		} else {
 			t += p;
 		}

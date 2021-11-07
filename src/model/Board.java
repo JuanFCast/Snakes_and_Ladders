@@ -171,6 +171,10 @@ public class Board {
 		
 	}
 	
+	public void setNumberPlayers() {
+		first.setNumbersPlayer();
+	}
+	
 	private boolean verifySnake(Node h, Node t) {
 		if(h != t) {
 			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
