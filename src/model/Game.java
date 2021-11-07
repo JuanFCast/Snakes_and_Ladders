@@ -5,11 +5,13 @@ import exceptions.MoreThanNinePlayersException;
 import exceptions.NoEqualPlayersException;
 import exceptions.NoNumbersException;
 import exceptions.SLoutBoundsException;
+import exceptions.signsExeption;
 
 public class Game {
 
 	private Board board;
 	private Dice dice;
+	private Winners w;
 
 	public Game() {
 		dice = new Dice(1, 6);
@@ -49,17 +51,6 @@ public class Game {
 	
 	
 	public void noEqualsPlayer(String players[], int n, int m) throws NoEqualPlayersException{
-		/*
-		String symbol1 = "*";
-		String symbol2 = "!";
-		String symbol3 = "O";
-		String symbol4 = "X";
-		String symbol5 = "%";
-		String symbol6 = "$";
-		String symbol7 = "#";
-		String symbol8 = "+";
-		String symbol9 = "&";
-		*/
 		
 		if (n>=0) {
 			if (m>=0) {
@@ -78,8 +69,39 @@ public class Game {
 
 	}
 	
+	public void signs(String players[], int n) throws signsExeption {
+		String symbol1 = "*";
+		String symbol2 = "!";
+		String symbol3 = "O";
+		String symbol4 = "X";
+		String symbol5 = "%";
+		String symbol6 = "$";
+		String symbol7 = "#";
+		String symbol8 = "+";
+		String symbol9 = "&";
+		
+		if (n>=0) {
+			if(players[n].equals(symbol1) || players[n].equals(symbol2) || players[n].equals(symbol3) || players[n].equals(symbol4) || players[n].equals(symbol5) || players[n].equals(symbol6) || players[n].equals(symbol7) || players[n].equals(symbol8) || players[n].equals(symbol9)) {
+				signs(players, n-1);
+
+			}else {
+
+				throw new signsExeption();
+			}
+
+		}
+	}
 	
 	
+	
+	
+	public Winners getW() {
+		return w;
+	}
+
+	public void setW(Winners w) {
+		this.w = w;
+	}
 
 	//Prints Boards
 	public String printSimpleBoard() {
@@ -89,4 +111,5 @@ public class Game {
 	public String printCompleteBoard() {
 		return board.completeBoard();
 	}
+
 }

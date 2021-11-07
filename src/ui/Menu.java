@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import exceptions.SLoutBoundsException;
+import exceptions.signsExeption;
 import exceptions.InsufficientPlayersForPlayingException;
 import exceptions.MoreThanNinePlayersException;
 import exceptions.NoEqualPlayersException;
@@ -82,7 +83,11 @@ public class Menu {
 			snakeAndLadders.numberPlayers(players);
 			snakeAndLadders.noNumbers(players, players.length-1);
 			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
+			snakeAndLadders.signs(players, players.length-1);
 			System.out.println(snakeAndLadders.printSimpleBoard());
+			br.readLine();
+			System.out.println(snakeAndLadders.printCompleteBoard());
+			playing();
 			
 		} catch (NumberFormatException e1) {
 			System.out.println(" | The values of Row, Columns, Snakes and Ladders should be numbers");
@@ -98,18 +103,32 @@ public class Menu {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		} catch (NoEqualPlayersException e) {
 			System.out.println(" | Players must have different symbols                        |");
+		} catch (signsExeption e) {
+			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
 		}
 
 	}
 
+	public void playing() throws IOException {
+		if(snakeAndLadders.getW()==null) {
+			String option = br.readLine();
+			play(option);
+			System.out.println(snakeAndLadders.printCompleteBoard());
+			playing();
+		}
+	}
 
-
-	public void play(String mode) {
+	public void play(String mode) throws IOException {
 
 		if(mode.equals(" ")) {
-
+			
 		} else if(mode.equals("simul")) {
 
+		}else if(mode.equals("num")) {
+			System.out.println(snakeAndLadders.printSimpleBoard());
+			br.readLine();
+		} else if(mode.equals("menu")) {
+			mainMenu(0);
 		}
 	}
 
