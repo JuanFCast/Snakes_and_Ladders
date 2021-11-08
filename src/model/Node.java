@@ -9,6 +9,8 @@ public class Node {
 	private Player players;
 	private Linked snake;
 	private Linked ladder;
+	
+	private int totalPlayers = 0;
 
 	//Nodes around
 	private Node next;
@@ -38,6 +40,40 @@ public class Node {
         }
     }
     
+    public Player moveThisPlayer(int p) {
+    	if(players.getNumPlayer() == p) {
+    		Player pl = players;
+    		players = players.getNext();
+    		
+    		pl.setNext(null);
+    		
+    		return pl;
+    	} else {
+    		return moveThisPlayer(p, players);
+    	}
+    }
+    
+    private Player moveThisPlayer(int n, Player p) {
+    	if(p.getNext() != null) {
+    		if(p.getNext().getNumPlayer() == n) {
+    			Player pl = p.getNext();
+    			p.setNext(p.getNext().getNext());
+    			
+    			return pl;
+    		} else {
+    			return moveThisPlayer(n, p.getNext());
+    		}
+    	} else {
+    		if(p.getNumPlayer() == n) {
+    			Player pl = p;
+    			p = null;
+    			return pl;
+    		} else {
+    			return null;
+    		}
+    	}
+    }
+    
     public void setNumbersPlayer() {
     	setNumbersPlayer(players, 1);
     }
@@ -49,7 +85,37 @@ public class Node {
     	}
     }
     
+    public int getTotalPlayers() {
+		getTotalPlayers(players);
+		return totalPlayers;
+	}
+	
+	private void getTotalPlayers(Player p) {
+		if(p == null) {
+			totalPlayers+=0;
+		} else {
+			totalPlayers++;
+			getTotalPlayers(p.getNext());
+		}
+	}
+	
+	public boolean iHaveYourPlayer(int p) {
+		return iHaveYourPlayer(p, players);
+	}
 
+	private boolean iHaveYourPlayer(int n, Player p) {
+		if(p == null) {
+			return false;
+		} else {
+			if(p.getNumPlayer() == n) {
+				return true;
+			} else {
+				return iHaveYourPlayer(n, p.getNext());
+			}
+		}
+	}
+	
+    
 	//Getters and Setters
 	public int getNumbNode() {
 		return numbNode;
@@ -101,7 +167,6 @@ public class Node {
 		this.down = down;
 	}
 
-
 	//For Snakes and Ladders
 	public Linked getSnake() {
 		return snake;
@@ -130,6 +195,7 @@ public class Node {
 		return s;
 	}
 
+	//To String snakes and ladders
 	private String toStringSnakesAndLadders(Linked s) {
 		String m = "";
 		if(s != null) {

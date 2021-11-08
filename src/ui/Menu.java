@@ -124,19 +124,14 @@ public class Menu {
 	}
 
 	public void play(String mode) throws IOException {
-
-		if(mode.equals(" ")) {
-			
+		if(mode.equals("")) {
+			snakeAndLadders.play();
 		} else if(mode.equals("simul")) {
 			
-		}else if(mode.equals("num")) {
+		} else if(mode.equals("num")) {
 			System.out.println(snakeAndLadders.printSimpleBoard());
 			br.readLine();
 		}
 	}
-
-	
-
-	
 
 }

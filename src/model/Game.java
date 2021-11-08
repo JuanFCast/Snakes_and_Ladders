@@ -12,6 +12,9 @@ public class Game {
 	private Board board;
 	private Dice dice;
 	private Winners w;
+	
+	private int turn = 1;
+	private int totalPlayers;
 
 	public Game() {
 		dice = new Dice(1, 6);
@@ -23,11 +26,52 @@ public class Game {
 		board.addSnakesAndLadders(s, e);
 		board.addPlayers(p, 0);
 		board.setNumberPlayers();
+		totalPlayers = board.getNumbersPlayers();
 	}
 	
 	public void play() {
-		int n = dice.roll();
+		if(turn <= totalPlayers) {
+			isMyTurn(turn);
+			turn++;
+		} else {
+			turn = 1;
+			play();
+		}
+	}
+	
+	private void isMyTurn(int p) {
+		Node find = board.searchPlayer(p);
+		System.out.println("El jugador " + turn + " esta en el Nodo: " + find.simpleBoard());
 		
+		Player pl = find.moveThisPlayer(p);
+		
+		int nb = dice.roll();
+		System.out.println("El jugador " + pl.get() + " ha sacado: " + nb);
+		
+		Node toMove = board.searchNode(nb, find);
+		
+		if(toMove.getSnake() != null || toMove.getLadder() != null) {
+			if(toMove.getSnake() != null) {
+				if(toMove.getSnake().getStart() == toMove) {
+					toMove.addPlayerInNode(pl);
+				} else {
+					Node aux = toMove.getSnake().getStart();
+					aux.addPlayerInNode(pl);
+				}
+			} else {
+				if(toMove.getLadder().getStart() == toMove) {
+					Node aux = toMove.getLadder().getEnd();
+					aux.addPlayerInNode(pl);
+				} else {
+					toMove.addPlayerInNode(pl);
+				}
+			}
+		} else {
+			toMove.addPlayerInNode(pl);
+		}
+		
+		//System.out.println("Este es el jugador que me traje: " + pl.get());
+		//System.out.println("El jugador " + turn + " esta en el Nodo: " + find.simpleBoard());
 	}
 	
 	public void noNumbers(String players[], int n) throws NoNumbersException{

@@ -7,12 +7,8 @@ public class Board {
 	private Node first;
 	private Node last;
 	
-	private Node aux;
-	
 	private int numRow;
 	private int numCol;
-	private int num = 1;
-	
 	private char globalChar = 'A';
 	private int globalInt = 1;
 
@@ -60,40 +56,13 @@ public class Board {
 	}
 
 
-	private void setNums(Node n, int o) {
-		if(o == 0) {
-			if(n.getNext() != null) {
-				n.setNumbNode(num);
-				n = n.getNext();
-				num++;
-				setNums(n, o);
-			} else {
-				n.setNumbNode(num);
-				num++;
-				if(n.getUp() != null) {
-					n = n.getUp();
-					n.setNumbNode(num);
-					n = n.getPrev();
-					num++;
-					setNums(n, 1);
-				}
-			}
-		} else {
-			if(n.getPrev() != null) {
-				n.setNumbNode(num);
-				n = n.getPrev();
-				num++;
-				setNums(n, o);
-			} else {
-				n.setNumbNode(num);
-				num++;
-				if(n.getUp() != null) {
-					n = n.getUp();
-					n.setNumbNode(num);
-					n = n.getNext();
-					num++;
-					setNums(n, 0);
-				}
+	private void setNums(Node n, int nb) {
+		if(nb <= getNumbNodes()) {
+			Node aux = moveRight(nb, n);
+			if(aux != null) {
+				nb++;
+				aux.setNumbNode(nb);
+				setNums(n, nb);
 			}
 		}
 	}
@@ -109,6 +78,10 @@ public class Board {
 	public int getNumbNodes() {
 		return numRow * numCol;
 	}
+	
+	public int getNumbersPlayers() {
+		return first.getTotalPlayers();
+	}
 
 	public void addSnakesAndLadders(int s, int l) throws SLoutBoundsException {
 		if((2*s + 2*l) <= getNumbNodes()) {
@@ -117,22 +90,19 @@ public class Board {
 		} else {
 			throw new SLoutBoundsException();
 		}
-	}
-	
+	}	
 
 	private void addSnakes(int s) {
 		if(s > 0) {
 			Dice dice = new Dice(0, getNumbNodes()-1);
 			int i = dice.roll();
-			createLinked(i);
-			Node head = aux;
+			Node head = createLinked(i);
 			
 			i = dice.roll();
-			createLinked(i);
-			Node tail = aux;
+			Node tail = createLinked(i);
 			if(verifySnake(head, tail) == true) {
-				head.setSnake(new Linked(globalChar, head, tail));
-				tail.setSnake(new Linked(globalChar, head, tail));
+				head.setSnake(new Linked(globalChar, tail, head));
+				tail.setSnake(new Linked(globalChar, tail, head));
 				globalChar = (char)(globalChar + 1);
 				addSnakes(s-1);
 			} else {
@@ -145,12 +115,10 @@ public class Board {
 		if(l > 0) {
 			Dice dice = new Dice(1, getNumbNodes()-1);
 			int i = dice.roll();
-			createLinked(i);
-			Node start = aux;
+			Node start = createLinked(i);
 			
 			i = dice.roll();
-			createLinked(i);
-			Node end = aux;
+			Node end = createLinked(i);
 			if(verifyLadder(start, end) == true) {
 				start.setLadder(new Linked(globalInt, start, end));
 				end.setLadder(new Linked(globalInt, start, end));
@@ -173,6 +141,24 @@ public class Board {
 	
 	public void setNumberPlayers() {
 		first.setNumbersPlayer();
+	}
+	
+	public Node searchPlayer(int p) {
+		return searchPlayers(p, 0, first); //Debe retornar el nodo
+	}
+	
+	private Node searchPlayers(int p, int nb, Node n){ //Debe retornar el nodo
+		if(n.iHaveYourPlayer(p) == true) {
+			return n;
+		} else {
+			nb = (nb+1);
+			Node aux = moveRight(nb, first);
+			if(aux != null) {
+				return searchPlayers(p, nb, aux);
+			} else {
+				return null;
+			}
+		}
 	}
 	
 	private boolean verifySnake(Node h, Node t) {
@@ -207,40 +193,44 @@ public class Board {
 		}
 	}
 	
-	private void createLinked(int i) {
-		moveRight(i, first);
+	public Node searchNode(int i, Node n) {
+		return moveRight(i, n);
+	}
+	
+	private Node createLinked(int i) {
+		return moveRight(i, first);
 	}
 	
 	
-	private void moveLeft(int i, Node n) {
+	private Node moveLeft(int i, Node n) {
 		if(i > 0) {
 			if(n.getPrev() != null) {
-				moveLeft(i-1, n.getPrev());
+				return moveLeft(i-1, n.getPrev());
 			} else {
 				if(n.getUp() != null) {
-					moveRight(i-1, n.getUp());
+					return moveRight(i-1, n.getUp());
 				} else {
-					aux = null;
+					return null;
 				}
 			}
 		} else {
-			aux = n;
+			return n;
 		}
 	}
 
-	private void moveRight(int i, Node n) {
+	private Node moveRight(int i, Node n) {
 		if(i > 0) {
 			if(n.getNext() != null) {
-				moveRight(i-1, n.getNext());
+				return moveRight(i-1, n.getNext());
 			} else {
 				if(n.getUp() != null) {
-					moveLeft(i-1, n.getUp());
+					return moveLeft(i-1, n.getUp());
 				} else {
-					aux = null;
+					return null;
 				}
 			}
 		} else {
-			aux = n;
+			return n;
 		}
 	}
 	
