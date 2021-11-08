@@ -18,6 +18,10 @@ public class Winners extends Player{
 		this.score=score;
 
 	}
+	
+	public Winners(char symbol) {
+		super(symbol);
+	}
 
 	public void calculateScore(int numbNodes) {
 		score = (double) getNumbMovements() * numbNodes;

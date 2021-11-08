@@ -166,6 +166,10 @@ public class Node {
 	public void setDown(Node down) {
 		this.down = down;
 	}
+	
+	public Player getPlayers() {
+		return players;
+	}
 
 	//For Snakes and Ladders
 	public Linked getSnake() {

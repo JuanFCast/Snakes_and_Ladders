@@ -39,39 +39,49 @@ public class Game {
 		}
 	}
 	
+	// Cuando activo un modo el siguiente no cuenta como jugada
+	// Una serpiente y escalera debe estar en una fila superior que su contra parte
 	private void isMyTurn(int p) {
 		Node find = board.searchPlayer(p);
-		System.out.println("El jugador " + turn + " esta en el Nodo: " + find.simpleBoard());
 		
 		Player pl = find.moveThisPlayer(p);
 		
 		int nb = dice.roll();
 		System.out.println("El jugador " + pl.get() + " ha sacado: " + nb);
 		
-		Node toMove = board.searchNode(nb, find);
+		Node toMove = board.searchNode((nb + find.getNumbNode()-1));
 		
-		if(toMove.getSnake() != null || toMove.getLadder() != null) {
-			if(toMove.getSnake() != null) {
-				if(toMove.getSnake().getStart() == toMove) {
-					toMove.addPlayerInNode(pl);
+		if(toMove != null) {
+			//System.out.println("Este es el nodo donde ire: " + toMove.simpleBoard());
+			if(toMove.getSnake() != null || toMove.getLadder() != null) {
+				if(toMove.getSnake() != null) {
+					if(toMove.getSnake().getStart() == toMove) {
+						toMove.addPlayerInNode(pl);
+					} else {
+						Node aux = toMove.getSnake().getStart();
+						aux.addPlayerInNode(pl);
+					}
 				} else {
-					Node aux = toMove.getSnake().getStart();
-					aux.addPlayerInNode(pl);
+					if(toMove.getLadder().getStart() == toMove) {
+						Node aux = toMove.getLadder().getEnd();
+						aux.addPlayerInNode(pl);
+					} else {
+						toMove.addPlayerInNode(pl);
+					}
 				}
 			} else {
-				if(toMove.getLadder().getStart() == toMove) {
-					Node aux = toMove.getLadder().getEnd();
-					aux.addPlayerInNode(pl);
-				} else {
-					toMove.addPlayerInNode(pl);
-				}
+				toMove.addPlayerInNode(pl);
 			}
+			isAWinner(pl);
 		} else {
-			toMove.addPlayerInNode(pl);
+			find.addPlayerInNode(pl);
 		}
-		
-		//System.out.println("Este es el jugador que me traje: " + pl.get());
-		//System.out.println("El jugador " + turn + " esta en el Nodo: " + find.simpleBoard());
+	}
+	
+	public void isAWinner(Player p) {
+		if(board.getLast().getPlayers() != null) {
+			w = new Winners(p.get());
+		}
 	}
 	
 	public void noNumbers(String players[], int n) throws NoNumbersException{

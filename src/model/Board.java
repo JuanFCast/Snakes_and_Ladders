@@ -75,14 +75,6 @@ public class Board {
 		}
 	}
 
-	public int getNumbNodes() {
-		return numRow * numCol;
-	}
-	
-	public int getNumbersPlayers() {
-		return first.getTotalPlayers();
-	}
-
 	public void addSnakesAndLadders(int s, int l) throws SLoutBoundsException {
 		if((2*s + 2*l) <= getNumbNodes()) {
 			addSnakes(s);
@@ -96,10 +88,10 @@ public class Board {
 		if(s > 0) {
 			Dice dice = new Dice(0, getNumbNodes()-1);
 			int i = dice.roll();
-			Node head = createLinked(i);
+			Node head = searchNode(i);
 			
 			i = dice.roll();
-			Node tail = createLinked(i);
+			Node tail = searchNode(i);
 			if(verifySnake(head, tail) == true) {
 				head.setSnake(new Linked(globalChar, tail, head));
 				tail.setSnake(new Linked(globalChar, tail, head));
@@ -115,10 +107,10 @@ public class Board {
 		if(l > 0) {
 			Dice dice = new Dice(1, getNumbNodes()-1);
 			int i = dice.roll();
-			Node start = createLinked(i);
+			Node start = searchNode(i);
 			
 			i = dice.roll();
-			Node end = createLinked(i);
+			Node end = searchNode(i);
 			if(verifyLadder(start, end) == true) {
 				start.setLadder(new Linked(globalInt, start, end));
 				end.setLadder(new Linked(globalInt, start, end));
@@ -139,15 +131,7 @@ public class Board {
 		
 	}
 	
-	public void setNumberPlayers() {
-		first.setNumbersPlayer();
-	}
-	
-	public Node searchPlayer(int p) {
-		return searchPlayers(p, 0, first); //Debe retornar el nodo
-	}
-	
-	private Node searchPlayers(int p, int nb, Node n){ //Debe retornar el nodo
+	private Node searchPlayers(int p, int nb, Node n){
 		if(n.iHaveYourPlayer(p) == true) {
 			return n;
 		} else {
@@ -193,11 +177,7 @@ public class Board {
 		}
 	}
 	
-	public Node searchNode(int i, Node n) {
-		return moveRight(i, n);
-	}
-	
-	private Node createLinked(int i) {
+	public Node searchNode(int i) {
 		return moveRight(i, first);
 	}
 	
@@ -234,6 +214,28 @@ public class Board {
 		}
 	}
 	
+	//Getters & Setters
+	public void setNumberPlayers() {
+		first.setNumbersPlayer();
+	}
+	
+	public Node searchPlayer(int p) {
+		return searchPlayers(p, 0, first);
+	}
+	
+	public int getNumbNodes() {
+		return numRow * numCol;
+	}
+	
+	public int getNumbersPlayers() {
+		return first.getTotalPlayers();
+	}
+	
+	public Node getLast() {
+		return last;
+	}
+	
+	//To strings
 	private String toStringRow1(Node firstRow) {
 		String s = " | ";
 
