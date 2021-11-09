@@ -105,11 +105,13 @@ public class Menu {
 			System.out.println(" | Players must have different symbols                        |");
 		} catch (signsExeption e) {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
+		} catch (InterruptedException e) {
+			
 		}
 
 	}
 
-	public void playing() throws IOException {
+	public void playing() throws IOException, InterruptedException {
 		if(snakeAndLadders.getW()==null) {
 			System.out.print(" | ");
 			String option = br.readLine();
@@ -124,11 +126,16 @@ public class Menu {
 		}
 	}
 
-	public void play(String mode) throws IOException {
+	public void play(String mode) throws IOException, InterruptedException {
 		if(mode.equals("")) {
 			System.out.println(snakeAndLadders.play());
 		} else if(mode.equals("simul")) {
-			
+			if(snakeAndLadders.getW()==null) {
+				System.out.println(snakeAndLadders.play());
+				System.out.println(snakeAndLadders.printCompleteBoard());
+				Thread.sleep(2000);
+				play("simul");
+			}
 		} else if(mode.equals("num")) {
 			System.out.println(snakeAndLadders.printSimpleBoard());
 			br.readLine();
