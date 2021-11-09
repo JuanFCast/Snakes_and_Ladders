@@ -15,7 +15,7 @@ import model.Game;
 public class Menu {
 
 	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	private Game snakeAndLadders = new Game();
+	private Game snakesAndLadders = new Game();
 
 	public Menu() {
 		welcome();
@@ -78,15 +78,16 @@ public class Menu {
 
 		try {
 			String players[] = parts[4].split("");
-			snakeAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
+			snakesAndLadders.startingGame(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]),
 					Integer.parseInt(parts[2]), Integer.parseInt(parts[3]), players );
-			snakeAndLadders.numberPlayers(players);
-			snakeAndLadders.noNumbers(players, players.length-1);
-			snakeAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
-			snakeAndLadders.signs(players, players.length-1);
-			System.out.println(snakeAndLadders.printSimpleBoard());
+			snakesAndLadders.numberPlayers(players);
+			snakesAndLadders.noNumbers(players, players.length-1);
+			snakesAndLadders.noEqualsPlayer(players, players.length-1, players.length-1);
+			snakesAndLadders.signs(players, players.length-1);
+			System.out.println(snakesAndLadders.printSimpleBoard());
 			br.readLine();
-			System.out.println(snakeAndLadders.printCompleteBoard());
+			System.out.print(" |------------------------------------------------------------|\n");
+			System.out.println(snakesAndLadders.printCompleteBoard());
 			playing();
 			
 		} catch (NumberFormatException e1) {
@@ -110,14 +111,14 @@ public class Menu {
 	}
 
 	public void playing() throws IOException {
-		if(snakeAndLadders.getW()==null) {
+		if(snakesAndLadders.getW()==null) {
 			System.out.print(" | ");
 			String option = br.readLine();
 			if(option.equals("menu")) {
 				
 			}else {
 				play(option);
-				System.out.println(snakeAndLadders.printCompleteBoard());
+				System.out.println(snakesAndLadders.printCompleteBoard());
 				playing();
 			}
 			
@@ -126,11 +127,11 @@ public class Menu {
 
 	public void play(String mode) throws IOException {
 		if(mode.equals("")) {
-			System.out.println(snakeAndLadders.play());
+			System.out.println(snakesAndLadders.play());
 		} else if(mode.equals("simul")) {
 			
 		} else if(mode.equals("num")) {
-			System.out.println(snakeAndLadders.printSimpleBoard());
+			System.out.println(snakesAndLadders.printSimpleBoard());
 			br.readLine();
 		}
 	}

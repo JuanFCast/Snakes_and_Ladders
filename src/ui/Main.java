@@ -10,6 +10,14 @@ import java.io.IOException;
  * @author Jesus David Rodriguez Burbano, https://github.com/JesusD03
  */
 
+
+/** Propuestas para pruebas unitarias
+ *  No hayan cabeza de serpientes en el nodo nxm
+ *  No hayan inicios de escaleras en el nodo nxm
+ * 
+ *
+ */
+
 public class Main {
 
 	private Menu app;

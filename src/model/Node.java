@@ -255,9 +255,9 @@ public class Node {
 			t += l;
 		}
 		if(p.equals("")) {
-			t = " " + t;
+			t = "  " + t + "  ";
 		} else {
-			t += p;
+			t += p + " ";
 		}
 		
 		return "[ " + t + "]";
