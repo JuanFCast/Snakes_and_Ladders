@@ -21,6 +21,7 @@ public class Board {
 		numCol = c;
 
 		createRows(0, 0, first);
+		last = moveRight((getNumbNodes()-1), first);
 		setNums(first, 0);
 	}
 
@@ -32,7 +33,6 @@ public class Board {
 			firstOfRow.setUp(firstOfNextRow);
 			firstOfNextRow.setDown(firstOfRow);			
 			createRows(i+1, j, firstOfNextRow); 
-			createRows(i+1, j, firstOfNextRow);
 		}
 	}
 
@@ -48,10 +48,6 @@ public class Board {
 				newNode.setDown(down);
 			}
 			createCol(i, j+1, newNode, down);
-
-			if((i+1) == numRow && (j+1) == numCol) {
-				last = newNode;
-			}
 		}
 	}
 
@@ -68,10 +64,14 @@ public class Board {
 	}
 
 	private Node fakeLast(Node l, int c) {
-		if(c > 1) {
-			return fakeLast(l.getPrev(), c-1);
+		if(last.getNext() != null) {
+			return last;
 		} else {
-			return l;
+			if(c > 1) {
+				return fakeLast(l.getPrev(), c-1);
+			} else {
+				return l;
+			}
 		}
 	}
 
