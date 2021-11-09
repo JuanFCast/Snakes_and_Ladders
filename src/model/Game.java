@@ -21,6 +21,7 @@ public class Game {
 	}
 	
 	public void startingGame(int r, int c, int s, int e, String p[]) throws SLoutBoundsException {
+		w = null;
 		board = new Board();
 		board.createBoard(r, c);
 		board.addSnakesAndLadders(s, e);
