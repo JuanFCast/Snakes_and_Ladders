@@ -2,6 +2,7 @@ package model;
 
 import exceptions.SLoutBoundsException;
 
+
 public class Board {
 
 	private Node first;
@@ -21,6 +22,7 @@ public class Board {
 		numCol = c;
 
 		createRows(0, 0, first);
+		last = moveRight((getNumbNodes()-1), first);
 		setNums(first, 0);
 	}
 
@@ -47,10 +49,6 @@ public class Board {
 				newNode.setDown(down);
 			}
 			createCol(i, j+1, newNode, down);
-
-			if((i+1) == numRow && (j+1) == numCol) {
-				last = newNode;
-			}
 		}
 	}
 
@@ -67,10 +65,14 @@ public class Board {
 	}
 
 	private Node fakeLast(Node l, int c) {
-		if(c > 1) {
-			return fakeLast(l.getPrev(), c-1);
+		if(last.getNext() != null) {
+			return last;
 		} else {
-			return l;
+			if(c > 1) {
+				return fakeLast(l.getPrev(), c-1);
+			} else {
+				return l;
+			}
 		}
 	}
 
@@ -244,7 +246,7 @@ public class Board {
 	
 	//To strings
 	private String toStringRow1(Node firstRow) {
-		String s = " | ";
+		String s = " |";
 
 		if(firstRow != null) {
 			s += toStringCol1(firstRow) + "\n";
@@ -266,7 +268,7 @@ public class Board {
 	}
 
 	private String toStringRow2(Node firstRow) {
-		String s = " | ";
+		String s = " |";
 
 		if(firstRow != null) {
 			s += toStringCol2(firstRow) + "\n";
