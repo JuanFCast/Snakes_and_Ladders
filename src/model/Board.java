@@ -32,7 +32,6 @@ public class Board {
 			firstOfRow.setUp(firstOfNextRow);
 			firstOfNextRow.setDown(firstOfRow);			
 			createRows(i+1, j, firstOfNextRow); 
-			createRows(i+1, j, firstOfNextRow);
 		}
 	}
 
