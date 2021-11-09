@@ -147,9 +147,13 @@ public class Board {
 	
 	private boolean verifySnake(Node h, Node t) {
 		if(h != t) {
-			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
-				if(h.getNumbNode() > t.getNumbNode()) {
-					return true;
+			if(t != last) {
+				if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
+					if(h.getNumbNode() > t.getNumbNode()) {
+						return true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}
@@ -163,9 +167,13 @@ public class Board {
 	
 	private boolean verifyLadder(Node h, Node t) {
 		if(h != t) {
-			if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
-				if(h.getNumbNode() < t.getNumbNode()) {
-					return true;
+			if(h != last) {
+				if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
+					if(h.getNumbNode() < t.getNumbNode()) {
+						return true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}

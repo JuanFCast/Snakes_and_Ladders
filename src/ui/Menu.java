@@ -111,6 +111,7 @@ public class Menu {
 
 	public void playing() throws IOException {
 		if(snakeAndLadders.getW()==null) {
+			System.out.print(" | ");
 			String option = br.readLine();
 			if(option.equals("menu")) {
 				
@@ -125,7 +126,7 @@ public class Menu {
 
 	public void play(String mode) throws IOException {
 		if(mode.equals("")) {
-			snakeAndLadders.play();
+			System.out.println(snakeAndLadders.play());
 		} else if(mode.equals("simul")) {
 			
 		} else if(mode.equals("num")) {

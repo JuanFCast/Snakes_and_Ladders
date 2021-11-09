@@ -29,30 +29,33 @@ public class Game {
 		totalPlayers = board.getNumbersPlayers();
 	}
 	
-	public void play() {
+	public String play() {
 		if(turn <= totalPlayers) {
-			isMyTurn(turn);
+			String s = isMyTurn(turn);
 			turn++;
+			return s;
 		} else {
 			turn = 1;
-			play();
+			return play();
 		}
 	}
 	
 	// Cuando activo un modo el siguiente no cuenta como jugada
 	// Una serpiente y escalera debe estar en una fila superior que su contra parte
-	private void isMyTurn(int p) {
+	private String isMyTurn(int p) {
 		Node find = board.searchPlayer(p);
 		
 		Player pl = find.moveThisPlayer(p);
 		
 		int nb = dice.roll();
-		System.out.println("El jugador " + pl.get() + " ha sacado: " + nb);
+		String s = "";
+		s += " | ---------------------------------------------- |\n";
+		s += " | Player " + pl.get() + " has rolled: " + nb + " |\n";
+		s += " | ---------------------------------------------- |\n";
 		
 		Node toMove = board.searchNode((nb + find.getNumbNode()-1));
 		
 		if(toMove != null) {
-			//System.out.println("Este es el nodo donde ire: " + toMove.simpleBoard());
 			if(toMove.getSnake() != null || toMove.getLadder() != null) {
 				if(toMove.getSnake() != null) {
 					if(toMove.getSnake().getStart() == toMove) {
@@ -76,6 +79,8 @@ public class Game {
 		} else {
 			find.addPlayerInNode(pl);
 		}
+		
+		return s;
 	}
 	
 	public void isAWinner(Player p) {
