@@ -49,12 +49,15 @@ public class Game {
 		Player pl = find.moveThisPlayer(p);
 		
 		int nb = dice.roll();
+		
 		String s = "";
-		s += " | ---------------------------------------------- |\n";
-		s += " | Player " + pl.get() + " has rolled: " + nb + " |\n";
-		s += " | ---------------------------------------------- |\n";
+		s += " |------------------------------------------------------------|\n";
+		s += " | Player " + pl.get() + " has rolled: " + nb + "                                     |\n";
 		
 		Node toMove = board.searchNode((nb + find.getNumbNode()-1));
+		
+		/*s += " | Player " + pl.get() + " moves from [ " + find.getNumbNode() + " ] to "
+				+ "[ " + toMove.getNumbNode() + " ]                         |\n";*/
 		
 		if(toMove != null) {
 			if(toMove.getSnake() != null || toMove.getLadder() != null) {
@@ -80,6 +83,8 @@ public class Game {
 		} else {
 			find.addPlayerInNode(pl);
 		}
+		
+		s += " |------------------------------------------------------------|\n";
 		
 		return s;
 	}

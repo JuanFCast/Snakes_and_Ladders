@@ -245,7 +245,7 @@ public class Board {
 	
 	//To strings
 	private String toStringRow1(Node firstRow) {
-		String s = " | ";
+		String s = " |";
 
 		if(firstRow != null) {
 			s += toStringCol1(firstRow) + "\n";
@@ -267,7 +267,7 @@ public class Board {
 	}
 
 	private String toStringRow2(Node firstRow) {
-		String s = " | ";
+		String s = " |";
 
 		if(firstRow != null) {
 			s += toStringCol2(firstRow) + "\n";
