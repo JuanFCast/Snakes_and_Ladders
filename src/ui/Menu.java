@@ -133,7 +133,7 @@ public class Menu {
 		if(mode.equals("")) {
 			System.out.println(snakesAndLadders.play());
 		} else if(mode.equals("simul")) {
-			if(snakesAndLadders.getW()==null) {
+			if(snakesAndLadders.getW() == null) {
 				System.out.println(snakesAndLadders.play());
 				System.out.println(snakesAndLadders.printCompleteBoard());
 				Thread.sleep(2000);

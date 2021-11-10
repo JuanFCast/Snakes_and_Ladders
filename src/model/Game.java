@@ -90,9 +90,17 @@ public class Game {
 	}
 	
 	public void isAWinner(Player p) {
-		if(board.getLast().getPlayers() != null) {
+		if(getLast().getPlayers() != null) {
 			w = new Winners(p.get());
 		}
+	}
+	
+	public Node getLast() {
+		return board.getLast();
+	}
+	
+	public Node getFirst() {
+		return board.getFirst();
 	}
 	
 	public void noNumbers(String players[], int n) throws NoNumbersException{

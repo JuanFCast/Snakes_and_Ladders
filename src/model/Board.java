@@ -165,11 +165,11 @@ public class Board {
 		}
 	}
 	
-	private boolean verifyLadder(Node h, Node t) {
-		if(h != t) {
-			if(h != last) {
-				if((h.getSnake() == null && h.getLadder() == null) && (t.getSnake() == null && t.getLadder() == null)) {
-					if(h.getNumbNode() < t.getNumbNode()) {
+	private boolean verifyLadder(Node s, Node e) {
+		if(s != e) {
+			if(s != last) {
+				if((s.getSnake() == null && s.getLadder() == null) && (e.getSnake() == null && e.getLadder() == null)) {
+					if(s.getNumbNode() < e.getNumbNode()) {
 						return true;
 					} else {
 						return false;
@@ -241,6 +241,10 @@ public class Board {
 	
 	public Node getLast() {
 		return last;
+	}
+	
+	public Node getFirst() {
+		return first;
 	}
 	
 	//To strings
