@@ -46,7 +46,40 @@ class GameTest {
 	public void testHeadSnakesInLast() {
 		setupScenary2();
 		
-		assertNotEquals(miniGame.getLast().getSnake().getStart(), miniGame.getLast());
+		if(miniGame.getLast().getSnake() != null) {
+			assertNotEquals(miniGame.getLast().getSnake().getEnd(), miniGame.getLast());
+		} else {
+			assertEquals(miniGame.getLast().getSnake(), null);
+		}
+	}
+	
+	@Test
+	public void testStartLadderInFirst() {
+		setupScenary2();
+		
+		if(miniGame.getFirst().getLadder() != null) {
+			assertNotEquals(miniGame.getFirst().getLadder().getStart(), miniGame.getFirst());
+		} else {
+			assertEquals(miniGame.getFirst().getLadder(), null);
+		}
+	}
+	
+	@Test
+	public void testSnakesAndLadderLessThatNXM() {
+		setupScenary1();
+		
+		int n, m, s, e;
+		String players[] = {"$", "%", "&"};
+		
+		n = 4;
+		m = 4;
+		s = 5;
+		e = 4;
+		
+		try {
+			miniGame.startingGame(n, m, s, e, players);
+			fail();
+		} catch (SLoutBoundsException e1) {}
 	}
 
 }
