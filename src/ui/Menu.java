@@ -126,6 +126,10 @@ public class Menu {
 				playing();
 			}
 			
+			
+		}else {
+			System.out.println("WOW there has been a winner!!!");
+			System.out.println("The winner is: " + snakesAndLadders.getW().get());
 		}
 	}
 
