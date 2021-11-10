@@ -8,3 +8,5 @@ This program is inspired by the classic game "Snakes and Ladders", come and play
 * **Juan Camilo Ramirez Tabares** - [JCamiloRamirezTabares](https://github.com/JCamiloRamirezTabares)
 * **Jesus David Rodriguez Burbano** - [JesusD03](https://github.com/JesusD03)
 * **Juan Felipe Castillo Gomez** - [JuanFCast](https://github.com/JuanFCast)
+## Inspired code
+Inspired by the code made by Professor Juan Manuel Reyes in the video https://youtu.be/jA9jLQDcfbI
