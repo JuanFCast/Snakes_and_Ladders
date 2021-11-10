@@ -2,6 +2,7 @@ package model;
 
 import exceptions.SLoutBoundsException;
 
+
 public class Board {
 
 	private Node first;
