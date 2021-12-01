@@ -1,9 +1,11 @@
 package model;
 
+
+//Es una clase que puede transformarse en una serpiente o en una escalera de acuerdo a la necesidad
 public class Linked {
 
-	private char nameSnake;
-	private int nameLadders;
+	private char nameSnake;    //    <---- Si tiene una serpiente
+	private int nameLadders;   //    <---- Si tiene una escalera
 
 	//Nodes
 	private Node start;

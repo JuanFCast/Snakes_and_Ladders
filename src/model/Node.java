@@ -6,7 +6,7 @@ public class Node {
 	private int col;
 
 	private int numbNode;
-	private Player players;
+	private Player players; //Es el first de la clase Player
 	private Linked snake;
 	private Linked ladder;
 	
@@ -53,6 +53,7 @@ public class Node {
     	}
     }
     
+    //Es como eliminar un jugador de ese nodo, pero no se pierde la referencia
     private Player moveThisPlayer(int n, Player p) {
     	if(p.getNext() != null) {
     		if(p.getNext().getNumPlayer() == n) {
@@ -99,6 +100,7 @@ public class Node {
 		}
 	}
 	
+	//Encapsulamiento
 	public boolean iHaveYourPlayer(int p) {
 		return iHaveYourPlayer(p, players);
 	}
@@ -189,11 +191,12 @@ public class Node {
 	}
 
 	//ToString Players in Node
-	private String toStringPlayers(Player p) {
+	private String toStringPlayers(Player p) { 
 		String s = "";
 		if(p != null) {
 			s += p.toString();
-			s += toStringPlayers(p.getNext());
+			s += toStringPlayers(p.getNext()); // s = String
+			//A la variable "s" se le añade el retorno de toStringPlayers con el siguiente jugador (s + (Siguiente jugador))
 		}
 
 		return s;

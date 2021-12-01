@@ -26,8 +26,8 @@ public class Game {
 		board.createBoard(r, c);
 		board.addSnakesAndLadders(s, e);
 		board.addPlayers(p, 0);
-		board.setNumberPlayers();
-		totalPlayers = board.getNumbersPlayers();
+		board.setNumberPlayers(); //Ya tenemos cada jugador con su numero respectivo
+		totalPlayers = board.getNumbersPlayers(); // Ya sabemos cuantos jugadores hay
 	}
 	
 	public String play() {
@@ -66,13 +66,13 @@ public class Game {
 				if(toMove.getSnake() != null) {
 					s += " | Oh no! This is a Snake                                     |\n";
 					if(toMove.getSnake().getStart() == toMove) {
-						s += " | Uff! is his tail                                           |\n";
+						s += " | Uff! is his head                                           |\n";
 						toMove.addPlayerInNode(pl);
 					} else {
 						Node aux = toMove.getSnake().getStart();
 						aux.addPlayerInNode(pl);
 						
-						s += " | Noo! is his head                                           |\n";
+						s += " | Noo! is his tail                                           |\n";
 						s += " | Player " + pl.get() + " moves from [ " + toMove.getNumbNode() + " ] to "
 								+ "[ " + aux.getNumbNode() + " ]                       |\n";
 					}

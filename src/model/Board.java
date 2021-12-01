@@ -64,7 +64,7 @@ public class Board {
 		}
 	}
 
-	private Node fakeLast(Node l, int c) {
+	private Node fakeLast(Node l, int c) { //Construir un nodo final falso
 		if(last.getNext() != null) {
 			return last;
 		} else {
@@ -87,9 +87,9 @@ public class Board {
 
 	private void addSnakes(int s) {
 		if(s > 0) {
-			Dice dice = new Dice(0, getNumbNodes()-1);
-			int i = dice.roll();
-			Node head = searchNode(i);
+			Dice dice = new Dice(0, getNumbNodes()-1); //Dice = dado
+			int i = dice.roll(); //Trae un numero aleatorio
+			Node head = searchNode(i); //Busca el nodo del numero aleatorio
 			
 			i = dice.roll();
 			Node tail = searchNode(i);
@@ -115,13 +115,14 @@ public class Board {
 			if(verifyLadder(start, end) == true) {
 				start.setLadder(new Linked(globalInt, start, end));
 				end.setLadder(new Linked(globalInt, start, end));
-				globalInt++;;
+				globalInt++;
 				addLadders(l-1);
 			} else {
 				addLadders(l);
 			}
 		}
 	}
+	
 	
 	public void addPlayers(String player[], int i) {
 		if (i<player.length) {
@@ -229,7 +230,7 @@ public class Board {
 	}
 	
 	public Node searchPlayer(int p) {
-		return searchPlayers(p, 0, first);
+		return searchPlayers(p, 0, first); // p = el jugador que buscare, 0 = donde inicio, first = la primera casilla (tablero)
 	}
 	
 	public int getNumbNodes() {
