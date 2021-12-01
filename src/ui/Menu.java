@@ -106,9 +106,7 @@ public class Menu {
 			System.out.println(" | Players must have different symbols                        |");
 		} catch (signsExeption e) {
 			System.out.println(" | The players should be chars like * ! O X % $ # + &         |");
-		} catch (InterruptedException e) {
-			
-		}
+		} catch (InterruptedException e) {}
 
 	}
 
@@ -128,8 +126,8 @@ public class Menu {
 			
 			
 		}else {
-			System.out.println("WOW there has been a winner!!!");
-			System.out.println("The winner is: " + snakesAndLadders.getW().get());
+			System.out.println(" | WOW there has been a winner!!!");
+			System.out.println(" | The winner is: " + snakesAndLadders.getW().get());
 		}
 	}
 

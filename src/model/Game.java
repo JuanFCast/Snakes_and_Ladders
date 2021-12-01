@@ -56,23 +56,36 @@ public class Game {
 		
 		Node toMove = board.searchNode((nb + find.getNumbNode()-1));
 		
-		/*s += " | Player " + pl.get() + " moves from [ " + find.getNumbNode() + " ] to "
-				+ "[ " + toMove.getNumbNode() + " ]                         |\n";*/
+		
 		
 		if(toMove != null) {
+			s += " | Player " + pl.get() + " moves from [ " + find.getNumbNode() + " ] to "
+			+ "[ " + toMove.getNumbNode() + " ]                         |\n";
+			
 			if(toMove.getSnake() != null || toMove.getLadder() != null) {
 				if(toMove.getSnake() != null) {
+					s += " | Oh no! This is a Snake                                     |\n";
 					if(toMove.getSnake().getStart() == toMove) {
+						s += " | Uff! is his tail                                           |\n";
 						toMove.addPlayerInNode(pl);
 					} else {
 						Node aux = toMove.getSnake().getStart();
 						aux.addPlayerInNode(pl);
+						
+						s += " | Noo! is his head                                           |\n";
+						s += " | Player " + pl.get() + " moves from [ " + toMove.getNumbNode() + " ] to "
+								+ "[ " + aux.getNumbNode() + " ]                       |\n";
 					}
 				} else {
+					s += " | Yess! A Ladder                                             |\n";
 					if(toMove.getLadder().getStart() == toMove) {
 						Node aux = toMove.getLadder().getEnd();
 						aux.addPlayerInNode(pl);
+						s += " | Is his start! Yuhuuu!                                      |\n";
+						s += " | Player " + pl.get() + " moves from [ " + toMove.getNumbNode() + " ] to "
+								+ "[ " + aux.getNumbNode() + " ]                       |\n";
 					} else {
+						s += " | Is his end :c                                              |\n";
 						toMove.addPlayerInNode(pl);
 					}
 				}
